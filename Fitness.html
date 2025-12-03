@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cult.Pro: Next-Gen Digital Fitness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+    /* ---------- RESET & VARIABLES (UNCHANGED) ---------- */
+    :root {
+        --cult-bg: #111215;
+        --cult-card: #1F2125;
+        --cult-gradient: linear-gradient(96deg, #FF3278 0%, #FF5C39 100%);
+        --cult-gradient-hover: linear-gradient(96deg, #FF5C39 0%, #FF3278 100%);
+        --text-primary: #ffffff;
+        --text-secondary: #9CA3AF;
+        --border-color: #2E3034;
+        --accent-pink: #FF3278;
+        --accent-orange: #FF5C39;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    /* ---------- GLOBAL ---------- */
+    body {
+        background-color: var(--cult-bg);
+        color: var(--text-primary);
+        font-family: 'Montserrat', sans-serif;
+        overflow-x: hidden;
+        padding-bottom: 80px;
+    }
+
+    h1, h2, h3 {
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    p { color: var(--text-secondary); line-height: 1.5; font-size: 0.95rem; font-weight: 500;}
+
+    /* ---------- UTILITIES ---------- */
+    .hidden { display: none !important; }
+    .text-accent { 
+        background: var(--cult-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 800;
+    }
+    
+    /* ---------- HEADER ---------- */
+    header {
+        padding: 40px 20px 20px;
+        text-align: center;
+        background: radial-gradient(circle at center, #2a1a20 0%, #111215 70%);
+    }
+    header h1 {
+        font-size: 4.5rem;
+        line-height: 1;
+        margin-bottom: 5px;
+        background: white;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 2px 2px 0px rgba(255, 50, 120, 0.4);
+    }
+
+    /* ---------- NAV ---------- */
+    nav {
+        position: sticky;
+        top: 20px;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 20px;
+        margin: 0 20px 40px;
+        background: rgba(31, 33, 37, 0.85);
+        backdrop-filter: blur(12px);
+        border-radius: 50px;
+        border: 1px solid rgba(255,255,255,0.1);
+        flex-wrap: wrap;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 700;
+        padding: 10px 15px; /* Reduced padding for more links */
+        border-radius: 30px;
+        transition: 0.3s;
+        text-transform: uppercase;
+        font-family: 'Montserrat', sans-serif;
+        white-space: nowrap;
+    }
+    nav a:hover, nav a.active {
+        background: #333;
+        color: var(--accent-pink);
+    }
+
+    /* ---------- SECTIONS & CARDS ---------- */
+    section {
+        max-width: 1200px; /* Wider section for more content */
+        margin: 0 auto 60px;
+        padding: 0 20px;
+    }
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .section-title::before {
+        content: '';
+        display: block;
+        width: 6px;
+        height: 35px;
+        background: var(--cult-gradient);
+        border-radius: 4px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Slightly smaller min size */
+        gap: 20px;
+    }
+
+    .card {
+        background: var(--cult-card);
+        padding: 25px;
+        border-radius: 16px;
+        transition: all 0.3s ease;
+        border: 1px solid transparent;
+        position: relative;
+        overflow: hidden;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        border-color: #333;
+    }
+    .card h3 { font-size: 1.8rem; margin-bottom: 10px; letter-spacing: 0.5px; }
+
+    /* ---------- INPUTS & UI ELEMENTS ---------- */
+    input, select, textarea { /* Added textarea */
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        background: #111215;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        resize: none;
+    }
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: var(--accent-pink);
+    }
+
+    /* ---------- BUTTONS (The Cult Pill) ---------- */
+    .btn {
+        width: 100%;
+        padding: 14px;
+        background: var(--cult-gradient);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 15px;
+        font-size: 0.9rem;
+    }
+    .btn:hover {
+        background: var(--cult-gradient-hover);
+        box-shadow: 0 5px 15px rgba(255, 50, 120, 0.4);
+        transform: scale(1.02);
+    }
+    .btn-secondary { background: #333; }
+    .btn-secondary:hover { background: #444; box-shadow: none; }
+    .btn-danger { background: #ff2222; }
+
+    /* Additional Styling for New Features */
+    .community-post {
+        background: #111;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        border-left: 3px solid var(--accent-orange);
+    }
+    .post-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        color: var(--accent-pink);
+        margin-bottom: 5px;
+    }
+    .product-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+    }
+    .product-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px dotted #222;
+    }
+    .product-item button {
+        width: auto;
+        padding: 5px 15px;
+        margin: 0;
+        font-size: 0.75rem;
+    }
+    .metric-data {
+        font-size: 2rem;
+        font-family: 'Bebas Neue';
+        color: var(--accent-pink);
+        margin-top: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div id="loginModal" class="login-overlay hidden">
+    <div class="login-box">
+        <h2 id="authTitle" style="font-size: 3rem; margin-bottom: 10px;">CULT<span class="text-accent">PRO</span></h2>
+        <p style="margin-bottom: 30px;">Access the ecosystem</p>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button id="authBtn" class="btn" onclick="handleAuth()">Start Training</button>
+        <span id="authToggle" class="auth-toggle" onclick="toggleAuthMode()">New Athlete? Join Now</span>
+        
+        <select id="userSwitcher" style="margin-top: 20px; text-align: center;" onchange="switchUser(this.value)">
+            <option value="">— Switch User —</option>
+        </select>
+    </div>
+</div>
+
+<header>
+    <h1>CULT.PRO</h1>
+    <p>NEXT-GEN DIGITAL FITNESS</p>
+    <p id="welcomeUser" style="color: var(--accent-pink); margin-top: 10px; font-weight: 700; font-size: 0.9rem;"></p>
+</header>
+
+<nav>
+    <a href="#ai">AI Coach (1)</a>
+    <a href="#workouts">Workouts (3)</a>
+    <a href="#gamification">Level Up (3)</a>
+    <a href="#recovery">Recovery (3)</a>
+    <a href="#diet">Eat (3)</a>
+    <a href="#advanced">Adv. Stats (3)</a>
+    <a href="#community">Community (3)</a>
+    <a href="#store">Store (2)</a>
+    <a href="#tools">Settings (3)</a>
+    <a href="#" onclick="handleLogout()" style="color:#666;">Logout</a>
+</nav>
+
+<section id="ai">
+    <h2 class="section-title">🤖 AI Personal Coach</h2>
+    <div class="grid-container">
+        <div class="card">
+            <h3>🎤 Smart Audio</h3>
+            <p>Real-time cues for perfect form and pacing.</p>
+            <button class="btn" onclick="startAIVoice()">Activate Voice</button>
+        </div>
+        <div class="card">
+            <h3>🍲 Eat.Fit AI</h3>
+            <p>Custom nutrition tailored to your biometrics and goals.</p>
+            <select id="mealGoal">
+                <option value="weightloss">Lose Weight</option>
+                <option value="muscle">Build Muscle</option>
+                <option value="maintain">Stay Fit</option>
+            </select>
+            <button class="btn" onclick="generateMealPlan()">Create Plan</button>
+            <div id="mealOutput" style="margin-top:15px; font-size: 0.9rem; color:white; font-weight: 600;"></div>
+        </div>
+        <div class="card">
+            <h3>⚡ Energy Check</h3>
+            <p>Adaptive intensity based on your subjective readiness.</p>
+            <select id="energyLevel">
+                <option value="low">Feeling Drained</option>
+                <option value="medium">Good to Go</option>
+                <option value="high">Full Power</option>
+            </select>
+            <button class="btn" onclick="adjustDifficulty()">Analyze Readiness</button>
+            <p id="difficultyResult" style="margin-top:10px; font-weight:bold; color:var(--accent-pink); text-transform: uppercase;"></p>
+        </div>
+    </div>
+</section>
+
+---
+
+<section id="workouts">
+    <h2 class="section-title">🏋️ Live Session</h2>
+    
+    <div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <span style="font-weight: 700; color: #666;">CURRENT MODE</span>
+            <span style="color: var(--accent-pink); font-weight: 800;">LIVE TRACKING</span>
+        </div>
+
+        <div class="timer-box" id="timerDisplay">00:00</div>
+        
+        <select id="workoutType" style="text-align: center;">
+            <option value="hiit">HRX (HIIT)</option>
+            <option value="strength">S&C (Strength)</option>
+            <option value="yoga">Yoga Flow</option>
+            <option value="dance">Dance Fitness</option>
+        </select>
+
+        <div style="display: flex; gap: 10px;">
+            <button class="btn" onclick="startWorkout()">Start</button>
+            <button class="btn btn-secondary" onclick="pauseWorkout()">Pause</button>
+        </div>
+        <button class="btn btn-secondary" style="background: #222; margin-top: 10px;" onclick="stopWorkout()">End Session</button>
+
+        <div style="margin-top: 30px; text-align: left;">
+            <p style="font-size: 0.8rem; font-weight: 700;">INTENSITY METER</p>
+            <div class="progress-container">
+                <div id="workoutProgress" class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+---
+
+<section id="gamification">
+    <h2 class="section-title">⭐ Your Journey</h2>
+    
+    <div class="grid-container">
+        <div class="card">
+            <h3>Rank Status</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0;">
+                <div class="stat-badge">LVL <span id="level" style="color: var(--accent-orange);">1</span></div>
+                <div class="stat-badge">XP <span id="xp" style="color: var(--accent-pink);">0</span></div>
+            </div>
+            <div class="progress-container">
+                <div id="xpBar" class="progress-fill"></div>
+            </div>
+            <p style="font-size: 0.8rem; text-align: right; color: #666; font-weight: 600;">TARGET: <span id="xpNext">300</span> XP</p>
+        </div>
+
+        <div class="card">
+            <h3>Daily Goals</h3>
+            <ul id="questList" style="list-style: none; padding: 0; font-weight: 600;"></ul>
+            <button class="btn btn-secondary" onclick="generateQuests()">Refresh</button>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Leaderboard</h3>
+            <p style="font-size: 0.8rem; margin-bottom: 10px;">Weekly XP Ranking</p>
+            <div class="leaderboard-item"><span>#1 EliteCult</span> <span style="color: var(--accent-pink);">2400 XP</span></div>
+            <div class="leaderboard-item"><span>#2 Your Rank</span> <span id="leaderboardXP" style="color: var(--accent-orange);">0 XP</span></div>
+            <div class="leaderboard-item"><span>#3 FitChamp</span> <span>1850 XP</span></div>
+            <button class="btn btn-secondary" onclick="simulateLeaderboardUpdate()">Refresh Rank</button>
+        </div>
+    </div>
+</section>
+
+---
+
+<section id="recovery">
+    <h2 class="section-title">🧘 Recovery & Mind</h2>
+    <div class="grid-container">
+        
+        <div class="card">
+            <h3>🧘 Zen Mode</h3>
+            <p>10-minute guided breathing and meditation.</p>
+            <select id="zenType">
+                <option value="calm">Calm Focus</option>
+                <option value="energize">Quick Boost</option>
+                <option value="sleep">Sleep Prep</option>
+            </select>
+            <button class="btn" onclick="startZenMode()">Start Meditation</button>
+        </div>
+
+        <div class="card">
+            <h3>💤 Sleep Quality</h3>
+            <p>Log your sleep duration and quality rating.</p>
+            <input type="number" id="sleepHours" placeholder="Hours Slept (e.g., 7.5)">
+            <select id="sleepQuality">
+                <option value="poor">Poor</option>
+                <option value="good">Good</option>
+                <option value="excellent">Excellent</option>
+            </select>
+            <button class="btn btn-secondary" onclick="logSleep()">Log Sleep</button>
+        </div>
+
+        <div class="card">
+            <h3>🩹 Pain Reporter</h3>
+            <p>Identify areas of discomfort for customized routines.</p>
+            <select id="painArea">
+                <option value="none">None</option>
+                <option value="knee">Knee</option>
+                <option value="shoulder">Shoulder</option>
+                <option value="back">Lower Back</option>
+            </select>
+            <button class="btn btn-secondary" onclick="logPain()">Log Pain</button>
+            <p id="painAdvice" style="margin-top: 10px; font-size: 0.8rem;"></p>
+        </div>
+    </div>
+</section>
+
+---
+
+<section id="diet">
+    <h2 class="section-title">🍽️ Nutrition & Hydration</h2>
+    <div class="grid-container">
+        
+        <div class="card">
+            <h3>Quick Calorie Add</h3>
+            <input type="text" id="foodName" placeholder="Meal Name">
+            <input type="number" id="foodCals" placeholder="Calories">
+            <button class="btn" onclick="logFood()">Log Entry</button>
+        </div>
+
+        <div class="card">
+            <h3>Daily Intake</h3>
+            <div style="margin-bottom: 15px;">
+                <span style="font-size: 3rem; font-family: 'Bebas Neue';" class="text-accent" id="dailyCals">0</span> 
+                <span style="font-weight: 700;">KCAL</span>
+            </div>
+            <ul id="foodLogList" style="list-style: none; max-height: 150px; overflow-y: auto; font-size: 0.9rem; font-weight: 500;">
+                </ul>
+        </div>
+        
+        <div class="card">
+            <h3>💧 Hydration Log</h3>
+            <p>Log a glass (250ml) of water.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin: 15px 0;">
+                <span style="font-size: 2rem; font-family: 'Bebas Neue';" class="text-accent" id="waterLog">0</span> 
+                <span style="font-weight: 700;">GLASSES</span>
+            </div>
+            <button class="btn btn-secondary" onclick="logWater()">+ 1 Glass</button>
+        </div>
+    </div>
+</section>
+
+---
+
+<section id="advanced">
+    <h2 class="section-title">📈 Advanced Metrics</h2>
+    <div class="grid-container">
+        
+        <div class="card">
+            <h3>Weekly Intensity</h3>
+            <p>Visualization of workout effort over the week.</p>
+            <div class="graph-box">
+                <div class="bar" style="height: 30%;"><span>M</span></div>
+                <div class="bar active" style="height: 60%;"><span>T</span></div>
+                <div class="bar" style="height: 20%;"><span>W</span></div>
+                <div class="bar" style="height: 80%;"><span>T</span></div>
+                <div class="bar" style="height: 50%;"><span>F</span></div>
+                <div class="bar" style="height: 90%;"><span>S</span></div>
+                <div class="bar" style="height: 40%;"><span>S</span></div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>📏 Body Metrics</h3>
+            <p>Track your weight and body fat/BMI.</p>
+            <input type="number" id="weightInput" placeholder="Weight (kg)">
+            <input type="number" id="bfInput" placeholder="Body Fat (%)">
+            <button class="btn btn-secondary" onclick="logBodyMetrics()">Log Metrics</button>
+            <p id="metricsOutput" style="margin-top: 10px; font-size: 0.8rem;"></p>
+        </div>
+
+        <div class="card">
+            <h3>❤️ Activity Zones</h3>
+            <p>Analyze time spent in different heart rate zones.</p>
+            <div style="margin-top: 15px;">
+                <p>Cardio Time</p><div class="metric-data">45 MIN</div>
+                <p>Peak HR</p><div class="metric-data">185 BPM</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+---
+
+<section id="community">
+    <h2 class="section-title">🫂 Community Hub</h2>
+    <div class="grid-container">
+        
+        <div class="card" style="grid-column: span 2 / auto;">
+            <h3>Athlete Feed</h3>
+            <div class="community-post">
+                <div class="post-header"><span>@FitGuru_77</span> <span>1h ago</span></div>
+                <p style="color:white;">Just crushed an HRX session! Feeling the burn. Anyone else doing the 30-day challenge?</p>
+            </div>
+            <div class="community-post">
+                <div class="post-header"><span>@YogaQueen</span> <span>3h ago</span></div>
+                <p style="color:white;">Logged 8 hours of sleep. Recovery is key! Ready for the morning flow. 🙏</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Post & Engage</h3>
+            <textarea id="communityPostText" placeholder="Share your latest victory or question..." rows="3"></textarea>
+            <button class="btn btn-secondary" onclick="postToCommunity()">Share Post</button>
+        </div>
+        
+        <div class="card">
+            <h3>Find Classes</h3>
+            <p>Book live streams or local events.</p>
+            <select id="classType">
+                <option value="live">Live Stream (HIIT)</option>
+                <option value="local">Local Gym S&C</option>
+            </select>
+            <button class="btn" onclick="findClasses()">Book Now</button>
+        </div>
+    </div>
+</section>
+
+---
+
+<section id="store">
+    <h2 class="section-title">🛍️ Store & Perks</h2>
+    <div class="grid-container">
+        
+        <div class="card">
+            <h3>Cult Gear</h3>
+            <ul class="product-list">
+                <li class="product-item">
+                    <span>Pro Mat</span>
+                    <button class="btn-secondary" onclick="addToCart('Mat')">Buy</button>
+                </li>
+                <li class="product-item">
+                    <span>Resistance Bands</span>
+                    <button class="btn-secondary" onclick="addToCart('Bands')">Buy</button>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h3>Referral Program</h3>
+            <p>Share your link and earn rewards.</p>
+            <input type="text" value="CULTPRO-ATHLETE-101" readonly style="font-size: 0.8rem; text-align: center;">
+            <p style="color: var(--accent-pink); font-weight: 700; margin-top: 5px;">You have 500 Rewards Points</p>
+        </div>
+    </div>
+</section>
+
+---
+
+<section id="tools">
+    <h2 class="section-title">⚙️ App Settings</h2>
+    <div class="grid-container">
+        <div class="card">
+            <h3>🤖 Auto-Gen Workout</h3>
+            <p>Quickly generate a random routine.</p>
+            <button class="btn" onclick="generateAIPlan()">Generate Routine</button>
+            <div id="aiPlanOutput" style="margin-top:15px; font-weight: 500; font-size: 0.85rem; line-height: 1.6;"></div>
+        </div>
+        
+        <div class="card">
+            <h3>💾 Data Control</h3>
+            <p>Backup or restore your progress.</p>
+            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                <button class="btn btn-secondary" onclick="exportProgress()">Save Data</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">Load Data</button>
+            </div>
+            <input type="file" id="importFile" style="display:none;" onchange="importProgress(event)">
+            <button class="btn btn-danger" style="background: #ff2222; color: #fff;" onclick="resetProgress()">Factory Reset</button>
+        </div>
+
+        <div class="card">
+            <h3>👥 User Profile</h3>
+            <p>Manage notification and sound preferences.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <p style="color:white; font-weight:700;">Sound Status:</p>
+                <button class="btn-secondary" style="width: 100px; margin: 0;" onclick="toggleSound()" id="soundStatus">ON</button>
+            </div>
+            <button class="btn btn-secondary" onclick="sendFakeNotification()">Test Notification</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    /* =========================================
+       CORE DATA & LOCAL STORAGE 
+       ========================================= */
+    const defaultData = {
+        username: "Athlete",
+        xp: 0,
+        level: 1,
+        totalSessions: 0,
+        totalCalories: 0,
+        dailyCalories: 0,
+        waterCount: 0, 
+        bodyMetrics: [], 
+        sleepLog: [], 
+        painLog: [], // NEW: Pain log
+        foodLog: [],
+        settings: { sound: true }
+    };
+
+    let userData = JSON.parse(JSON.stringify(defaultData));
+
+    window.onload = function() {
+        populateUserSwitcher(); 
+        const currentUser = localStorage.getItem('fitnessUser');
+        if(currentUser) {
+            userData.username = currentUser;
+            loadData();
+            updateUI();
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('welcomeUser').innerText = "HELLO, " + userData.username.toUpperCase();
+            generateQuests(); 
+        } else {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+    };
+
+    function saveData() {
+        localStorage.setItem('fitnessData_' + userData.username, JSON.stringify(userData));
+        updateUI();
+    }
+
+    function loadData() {
+        const stored = localStorage.getItem('fitnessData_' + userData.username);
+        if (stored) {
+            userData = JSON.parse(stored);
+            renderFoodLog();
+        } else {
+            saveData();
+        }
+    }
+
+    function updateUI() {
+        // GAMIFICATION
+        document.getElementById("xp").innerText = userData.xp;
+        document.getElementById("level").innerText = userData.level;
+        const needed = userData.level * 300;
+        document.getElementById("xpNext").innerText = needed;
+        const percent = (userData.xp / needed) * 100;
+        document.getElementById("xpBar").style.width = Math.min(percent, 100) + "%";
+        document.getElementById("leaderboardXP").innerText = userData.xp + ' XP';
+        
+        // ANALYTICS & DIET
+        document.getElementById("totalSessions").innerText = userData.totalSessions;
+        document.getElementById("totalCalories").innerText = userData.totalCalories;
+        document.getElementById("dailyCals").innerText = userData.dailyCalories;
+        document.getElementById("waterLog").innerText = userData.waterCount;
+
+        // TOOLS/SETTINGS
+        document.getElementById("soundStatus").innerText = userData.settings.sound ? "ON" : "MUTED";
+        
+        // ADVANCED METRICS (Body)
+        document.getElementById("metricsOutput").innerText = userData.bodyMetrics.length > 0 
+            ? `Last Log: ${userData.bodyMetrics[userData.bodyMetrics.length - 1].weight}kg / ${userData.bodyMetrics[userData.bodyMetrics.length - 1].bf}%`
+            : "No metrics logged.";
+    }
+
+    /* =========================================
+       AUTH & MULTI-PROFILE (FEATURE 26)
+       ========================================= */
+    let isSignup = false;
+
+    function populateUserSwitcher() {
+        const switcher = document.getElementById('userSwitcher');
+        const usersDB = JSON.parse(localStorage.getItem('fitnessUsersDB') || '{}');
+        switcher.innerHTML = '<option value="">— Switch User —</option>';
+        for (const user in usersDB) {
+            const option = document.createElement('option');
+            option.value = user;
+            option.textContent = user;
+            switcher.appendChild(option);
+        }
+    }
+
+    function toggleAuthMode() {
+        isSignup = !isSignup;
+        const title = document.getElementById('authTitle');
+        const btn = document.getElementById('authBtn');
+        const toggle = document.getElementById('authToggle');
+        
+        if(isSignup) {
+            title.innerHTML = "JOIN <span class='text-accent'>CULT</span>";
+            btn.innerText = "CREATE ID";
+            toggle.innerText = "Back to Login";
+        } else {
+            title.innerHTML = "CULT<span class='text-accent'>PRO</span>";
+            btn.innerText = "START TRAINING";
+            toggle.innerText = "New Athlete? Join Now";
+        }
+    }
+
+    function handleAuth() {
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if(!username || !password) return alert("Credentials required.");
+
+        let usersDB = JSON.parse(localStorage.getItem('fitnessUsersDB') || '{}');
+
+        if(isSignup) {
+            if(usersDB[username]) {
+                alert("Username taken.");
+            } else {
+                usersDB[username] = password;
+                localStorage.setItem('fitnessUsersDB', JSON.stringify(usersDB));
+                populateUserSwitcher(); 
+                loginSuccess(username);
+            }
+        } else {
+            if(usersDB[username] && usersDB[username] === password) {
+                loginSuccess(username);
+            } else {
+                alert("Incorrect credentials.");
+            }
+        }
+    }
+
+    function switchUser(user) {
+        if (!user) return;
+        loginSuccess(user);
+    }
+
+    function loginSuccess(user) {
+        localStorage.setItem('fitnessUser', user);
+        userData = JSON.parse(JSON.stringify(defaultData));
+        userData.username = user;
+        loadData();
+        updateUI();
+        generateQuests();
+        document.getElementById('loginModal').classList.add('hidden');
+        document.getElementById('welcomeUser').innerText = "HELLO, " + user.toUpperCase();
+    }
+
+    function handleLogout() {
+        localStorage.removeItem('fitnessUser');
+        location.reload();
+    }
+
+    /* =========================================
+       AI COACH (FEATURES 1, 2, 3)
+       ========================================= */
+    function startAIVoice(){
+        if(userData.settings.sound) {
+            const msg = new SpeechSynthesisUtterance();
+            msg.text = "Let's sweat. Focus on your form.";
+            speechSynthesis.speak(msg);
+        }
+    }
+
+    function generateMealPlan(){
+        const goal = document.getElementById("mealGoal").value;
+        let plan = "";
+        if(goal === "weightloss") plan = "🔥 CUT: Oats / Grilled Chicken / Fish + Greens";
+        if(goal === "muscle") plan = "💪 BULK: Eggs + Toast / Steak Bowl / Whey + Pasta";
+        if(goal === "maintain") plan = "⚖️ BALANCE: Yogurt / Turkey Wrap / Stir Fry";
+        document.getElementById("mealOutput").innerHTML = plan;
+    }
+
+    function adjustDifficulty(){
+        const level = document.getElementById("energyLevel").value;
+        let result = level === "low" ? "RECOVERY FLOW" : level === "medium" ? "STANDARD INTENSITY" : "BEAST MODE";
+        document.getElementById("difficultyResult").innerText = result;
+    }
+
+    /* =========================================
+       WORKOUTS (FEATURES 4, 5, 6)
+       ========================================= */
+    let timerInterval;
+    let seconds = 0;
+    let isRunning = false;
+
+    function formatTime(sec) {
+        let m = Math.floor(sec / 60);
+        let s = sec % 60;
+        return (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+    }
+
+    function startWorkout() {
+        if (isRunning) return;
+        isRunning = true;
+        timerInterval = setInterval(() => {
+            seconds++;
+            document.getElementById("timerDisplay").innerText = formatTime(seconds);
+            let progress = (seconds % 60) / 60 * 100; 
+            document.getElementById("workoutProgress").style.width = progress + "%";
+        }, 1000);
+    }
+
+    function pauseWorkout() {
+        isRunning = false;
+        clearInterval(timerInterval);
+    }
+
+    function stopWorkout() {
+        pauseWorkout();
+        if(seconds > 5) {
+            userData.totalSessions++;
+            let cals = Math.floor(seconds * 0.2);
+            userData.totalCalories += cals;
+            addXP(cals + 50);
+            alert(`SESSION COMPLETE. ${cals} KCAL BURNED.`);
+        }
+        seconds = 0;
+        document.getElementById("timerDisplay").innerText = "00:00";
+        document.getElementById("workoutProgress").style.width = "0%";
+        saveData();
+    }
+
+    /* =========================================
+       GAMIFICATION (FEATURES 7, 8, 9)
+       ========================================= */
+    function addXP(amount){
+        userData.xp += amount;
+        let limit = userData.level * 300;
+        if(userData.xp >= limit){
+            userData.xp = userData.xp - limit;
+            userData.level++;
+            alert("LEVEL UP! YOU ARE NOW LEVEL " + userData.level);
+        }
+        saveData();
+    }
+
+    const quests = ["HIIT: 10 Mins", "Log 3 Meals", "Burn 300 Kcal", "Yoga Flow", "Drink 4 Glasses of Water"];
+    function generateQuests(){
+        const list = document.getElementById("questList");
+        list.innerHTML = "";
+        for(let i=0; i<3; i++) {
+            let q = quests[Math.floor(Math.random() * quests.length)];
+            list.innerHTML += `<li style="margin-bottom:8px; display:flex; align-items:center gap:10px;"><span style="color:var(--accent-pink)">●</span> &nbsp; ${q}</li>`;
+        }
+    }
+
+    function simulateLeaderboardUpdate() {
+        alert(`Refreshing leaderboard... Your XP is ${userData.xp}.`);
+        updateUI(); 
+    }
+
+    /* =========================================
+       RECOVERY (FEATURES 10, 11, 12)
+       ========================================= */
+    function startZenMode() {
+        const type = document.getElementById('zenType').value;
+        alert(`Starting 10-minute ${type.toUpperCase()} meditation. Focus on breathing.`);
+        addXP(10); 
+    }
+    
+    function logSleep() {
+        const hours = parseFloat(document.getElementById('sleepHours').value);
+        const quality = document.getElementById('sleepQuality').value;
+        if (hours > 0 && quality) {
+            userData.sleepLog.push({ date: new Date().toLocaleDateString(), hours, quality });
+            alert(`Logged ${hours} hours of ${quality} sleep.`);
+            document.getElementById('sleepHours').value = "";
+            addXP(15);
+            saveData();
+        }
+    }
+
+    function logPain() {
+        const area = document.getElementById('painArea').value;
+        const output = document.getElementById('painAdvice');
+        if (area !== 'none') {
+            output.innerText = `Focus on low-impact recovery today. Avoid direct stress on the ${area}.`;
+            userData.painLog.push({ date: new Date().toLocaleDateString(), area });
+            addXP(5);
+        } else {
+            output.innerText = 'No pain logged. Good to go.';
+        }
+        saveData();
+    }
+
+
+    /* =========================================
+       DIET (FEATURES 13, 14, 15)
+       ========================================= */
+    function logFood() {
+        const name = document.getElementById('foodName').value;
+        const cals = parseInt(document.getElementById('foodCals').value);
+        if(name && cals) {
+            userData.dailyCalories += cals;
+            userData.foodLog.push({name, cals});
+            renderFoodLog();
+            addXP(20);
+            document.getElementById('foodName').value = "";
+            document.getElementById('foodCals').value = "";
+            saveData();
+        }
+    }
+
+    function renderFoodLog() {
+        const list = document.getElementById('foodLogList');
+        list.innerHTML = "";
+        userData.foodLog.forEach(item => {
+            list.innerHTML += `<li style="border-bottom:1px solid #222; padding:5px 0; display:flex; justify-content:space-between;"><span>${item.name}</span> <span style="color:var(--accent-orange)">${item.cals}</span></li>`;
+        });
+    }
+    
+    function logWater() {
+        userData.waterCount++;
+        addXP(5); 
+        saveData();
+        alert(`Logged 1 glass. Total: ${userData.waterCount}`);
+    }
+
+    /* =========================================
+       ADVANCED METRICS (FEATURES 16, 17, 18)
+       ========================================= */
+    // Feature 16 (Graph) is static for demo.
+    
+    function logBodyMetrics() {
+        const weight = parseFloat(document.getElementById('weightInput').value);
+        const bf = parseFloat(document.getElementById('bfInput').value);
+        if (weight > 0) {
+            const date = new Date().toLocaleDateString();
+            userData.bodyMetrics.push({ date, weight, bf: bf || 'N/A' });
+            alert(`Metrics logged: ${weight}kg.`);
+            document.getElementById('weightInput').value = "";
+            document.getElementById('bfInput').value = "";
+            saveData();
+        }
+    }
+
+    /* =========================================
+       COMMUNITY (FEATURES 19, 20, 21)
+       ========================================= */
+    function postToCommunity() {
+        const postText = document.getElementById('communityPostText').value.trim();
+        if(postText.length > 5) {
+            alert("Post shared! (Simulated)");
+            document.getElementById('communityPostText').value = '';
+            addXP(25);
+        } else {
+            alert("Write something first!");
+        }
+    }
+
+    function findClasses() {
+        const type = document.getElementById('classType').value;
+        alert(`Searching for ${type} classes. Check your schedule!`);
+    }
+
+
+    /* =========================================
+       STORE (FEATURES 22, 23)
+       ========================================= */
+    function addToCart(item) {
+        alert(`${item} added to cart! (Simulated purchase)`);
+    }
+
+
+    /* =========================================
+       TOOLS/SETTINGS (FEATURES 24, 25, 26)
+       ========================================= */
+    function generateAIPlan() {
+        const r = Math.random();
+        let plan = "";
+        if(r < 0.33) plan = "• Jumping Jacks (30s)<br>• Push Ups (15 reps)<br>• Plank (45s)";
+        else if(r < 0.66) plan = "• Burpees (20 reps)<br>• Squats (20 reps)<br>• Lunges (10/leg)";
+        else plan = "• High Knees (30s)<br>• Mtn Climbers (30s)<br>• Crunches (20 reps)";
+        
+        document.getElementById("aiPlanOutput").innerHTML = plan;
+    }
+
+    function toggleSound() {
+        userData.settings.sound = !userData.settings.sound;
+        saveData();
+    }
+
+    function sendFakeNotification() {
+        if(confirm("Enable push notifications?")) {
+            setTimeout(() => alert("🔔 TIME TO TRAIN - Your 5 PM session is starting."), 2000);
+        }
+    }
+
+    function exportProgress() {
+        const data = JSON.stringify(userData);
+        const blob = new Blob([data], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "cult_pro_data_" + userData.username + ".json";
+        a.click();
+    }
+
+    function importProgress(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            try {
+                userData = JSON.parse(e.target.result);
+                saveData();
+                alert("SYNC COMPLETE");
+            } catch(err) { alert("SYNC FAILED"); }
+        };
+        reader.readAsText(file);
+    }
+
+    function resetProgress() {
+        if (confirm("FACTORY RESET? This will delete all your progress for this user.")) {
+            localStorage.removeItem('fitnessData_' + userData.username);
+            localStorage.removeItem('fitnessUser'); 
+            location.reload();
+        }
+    }
+</script>
+
+</body>
+</html>
